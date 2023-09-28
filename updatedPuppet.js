@@ -1,149 +1,210 @@
 function setup() {
-    createCanvas(400, 400);
+  createCanvas(400, 400);
+}
+
+class head {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
-  
-  
-  class rightMiddleArm {
-     constructor(x, y) {
-      this.x = x;
-      this.y = y;
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    ellipse(0, 0, 95, 90);
+    pop();
   }
-  
-    draw() {
-      //this.rotation = frameCount / 100;
-      // draw the arm
-      push();
-      translate(this.x, this.y);
-      //rotate(this.rotation);
-      rect(205, 120, 30, 15, 20);
-      pop();
-    } 
+}
+class rightMiddleArm {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
-  
-  class rightHand {
-      constructor(x, y) {
-      this.x = x;
-      this.y = y;
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    rect(0, 0, 30, 15, 20);
+    pop();
   }
-  
-    draw() {
-      
-      push();
-      translate(this.x, this.y);
-      rect(235, 120, 30, 15, 20);
-      pop();
-      
-    } 
+}
+
+class rightLeg {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
-  
-  class leftHand {
-      constructor(x, y) {
-      this.x = x;
-      this.y = y;
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    rect(0, 0, 15, 70, 20);
+    ellipse(8, 70, 22, 20, 20);
+    pop();
   }
-  
-    draw() {
-      push();
-      translate(this.x, this.y);
-      rect(15, 120, 30, 15, 20);
-      pop();
-      
-    } 
+}
+
+class leftLeg {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
-  
-  class leftMiddleArm {
-     constructor(x, y) {
-      this.x = x;
-      this.y = y;
-  
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    rect(0, 0, 15, 70, 20);
+    ellipse(7, 70, 22, 20, 20);
+    pop();
   }
-  
-    draw() {
-      //this.rotation = frameCount / 100;
-      // draw the arm
-      push();
-      translate(this.x, this.y);
-      //rotate(this.rotation);
-      rect(45, 120, 30, 15, 20);
-      pop();
-    } 
+}
+
+class rightHand {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
-  
-  class rightUpperArm {
-    constructor(x, y) {
-      this.x = x;
-      this.y = y;
-  
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+    rect(0, 0, 30, 15, 20);
+    pop();
   }
-  
-    draw() {
-      //this.rotation = frameCount / 100;
-      // draw the arm
-      push();
-      translate(this.x, this.y);
-      //rotate(this.rotation);
-      
-      rect(175, 120, 30, 15, 20);
-      pop();
-    }
+}
+
+class leftHand {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
-  
-  class leftUpperArm {
-    constructor(x, y) {
-      this.x = x;
-      this.y = y;
-      //this.rotation = frameCount / 100;
-  
-    }
-  
-    draw() {
-      //this.rotation = frameCount / 100;
-      // draw the arm
-      push();
-      translate(this.x, this.y);
-      //rotate(this.rotation);
-      
-      rect(75, 120, 30, 15, 20);
-      pop();
-    }
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+    rect(0, 0, 30, 15, 20);
+    pop();
   }
-  
-  
-  class Person {
-    constructor(x, y) {
-      this.x = x;
-      this.y = y;
-      this.rightUpperArm = new rightUpperArm(0, 0);
-      this.rightMiddleArm = new rightMiddleArm(0, 0);
-      this.rightHand = new rightHand(0, 0);
-      
-      this.leftHand = new leftHand(0, 0);
-      this.leftUpperArm = new leftUpperArm(0, 0);
-      this.leftMiddleArm = new leftMiddleArm(0,0);
+}
+
+class leftMiddleArm {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
-  
-    draw() {
-      push();
-      translate(this.x, this.y);
-      
-      //right hand
-      this.rightUpperArm.draw();
-      this.rightMiddleArm.draw();
-      this.rightHand.draw();
-      
-      this.leftHand.draw();
-      this.leftUpperArm.draw();
-      this.leftMiddleArm.draw();
-      
-      // draw body
-      rect(105, 116, 70, 120, 20);
-      pop();
-    }
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    rect(0, 0, 30, 15, 20);
+    pop();
   }
-  
-  let person = new Person(0, 0);
-  
-  function draw() {
-    background(220);
-    person.draw();
+}
+
+class rightUpperArm {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+
+    rect(0, 0, 30, 15, 20);
+    pop();
+  }
+}
+
+class leftUpperArm {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    //this.rotation = frameCount / 100;
+  }
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+
+    rect(0, 0, 30, 15, 20);
+    pop();
+  }
+}
+
+class Person {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+
+    this.head = new head(35, -45);
+    //(140-105, 70-115);
+
+    this.rightUpperArm = new rightUpperArm(70, 5);
+    this.rightMiddleArm = new rightMiddleArm(100, 5);
+    this.rightHand = new rightHand(130, 5);
+
+    this.leftHand = new leftHand(-90, 5);
+    this.leftUpperArm = new leftUpperArm(-30, 5);
+    this.leftMiddleArm = new leftMiddleArm(-60, 5);
+
+    this.rightLeg = new rightLeg(45, 122);
+
+    this.leftLeg = new leftLeg(9, 122);
+  }
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+
+    // head of the puppet
+    this.head.draw();
+
+    //right hand
+    this.rightUpperArm.draw();
+    this.rightMiddleArm.draw();
+    this.rightHand.draw();
+
+    //left hand
+    this.leftHand.draw();
+    this.leftUpperArm.draw();
+    this.leftMiddleArm.draw();
+
+    // right leg
+    this.rightLeg.draw();
+
+    this.leftLeg.draw();
+
+    // draw body
+    rect(0, 0, 70, 120, 20);
+    pop();
+  }
+}
+
+let person = new Person(120, 100);
+
+function draw() {
+  background(220);
+  person.draw();
+}
