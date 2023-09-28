@@ -6,7 +6,8 @@
 let video;          
 let handpose;         
 let predictions = []; 
-
+let x = 120;
+let y = 70;
 
 let ringFingerTip = [];
 let indexFingerTip = [];
@@ -65,16 +66,15 @@ function draw() {
     ellipse(thumbFingerTip[0], thumbFingerTip[1], 10);
     ellipse(wrist[0], wrist[1], 10);
 
-
-  // puppet 
-
+    
+  
   
     //ellipse(160, 200, 40);
     //right arm
     //stroke(255,0,0);
     //strokeWeight(5);
     //line(180, 190, 210, (170 - (wrist[1]-ringFingerTip[1])/2));
-    //left arm
+    //left arm 
     //line(140, 190, 100, (170 - (wrist[1]-indexFingerTip[1])/2));
 
 } 
