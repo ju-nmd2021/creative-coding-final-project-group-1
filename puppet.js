@@ -1,106 +1,142 @@
-function setup() {
-  createCanvas(400, 400);
+class head {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    ellipse(0, 0, 95, 90);
+    pop();
+  }
 }
 
-let x = 140;
-let y = 70;
+class rightLeg {
+  constructor(x, y, rightLegY) {
+    this.x = x;
+    this.y = y;
+    this.rightLegY = rightLegY;
+  }
 
-function draw() {
-  background(220);
-  fill(255,219,172)
-  
-  //body of the puppet
-  rect(x-35, y+46, 70, 120, 20);
+  draw() {
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    rotate(map(this.rightLegY, 0, 100, -PI / 9, PI / 2.5));
+    rect(0, 0, 15, 70, 20);
+    ellipse(8, 70, 22, 20, 20);
+    pop();
+  }
+}
 
-  // head of the puppet 
-  ellipse(x, y, 100, 95);
-  
-  //right arm of the puppet
-  rect(x+35, y+50, 30, 15, 20);
-  rect(x+65, y+50, 40, 15, 20);
-  rect(x+105, y+50, 30, 15, 20);
-  
-  //left arm of the puppet
-  rect(x-65, y+50, 30, 15, 20);
-  rect(x-105, y+50, 40, 15, 20);
-  rect(x-135, y+50, 30, 15, 20);
-  
-  //right leg 
-  rect(x+13, y+167, 15, 70, 20);
-  rect(x+10, y+226, 22, 20, 20);
-  
-  //left leg 
-  rect(x-28, y+167, 15, 70, 20);
-  rect(x-32, y+226, 22, 20, 20);
-  
-  //eyes big area
-  push();
-  fill(220);
-  ellipse(x-10, y-8, 15, 13);
-  ellipse(x+10, y-8, 15, 13);
-  pop();
-  
-  //eyes
-  fill(0);
-  ellipse(x-10, y-8, 2, 2);
-  ellipse(x+10, y-8, 2, 2);
-  
-  //lips
-  push();
-  beginShape();
-  noFill();
-  strokeWeight(3);
-  curveVertex(x-15, y+10);
-  curveVertex(x-10, y+10);
-  curveVertex(x-5, y+20);
-  curveVertex(x+5, y+20);
-  curveVertex(x+15, y+10);
-  curveVertex(x+15, y+10);
-  endShape();
-  pop();
-  
-  //body points top
-  ellipse(x-23, y+52, 2, 2);
-  ellipse(x+23, y+52, 2, 2);
-  
-  //body points down
-  ellipse(x-23, y+160, 2, 2);
-  ellipse(x+23, y+160, 2, 2);
-  
-  //leg points top
-  ellipse(x+21, y+172, 2, 2);
-  ellipse(x-21, y+172, 2, 2);
-  
-  //legpoints down
-  ellipse(x+21, y+222, 2, 2);
-  ellipse(x-21, y+222, 2, 2);
-  
-  //foot
-  ellipse(x+21, y+232, 2, 2);
-  ellipse(x-21, y+232, 2, 2);
-  
-  //right arm points first part
-  ellipse(x+39, y+57, 2, 2);
-  ellipse(x+61, y+57, 2, 2);
-  
-  //right arm points second part
-  ellipse(x+70, y+57, 2, 2);
-  ellipse(x+100, y+57, 2, 2);
-  
-  //right arm third part
-  ellipse(x+110, y+57, 2, 2);
-  ellipse(x+130, y+57, 2, 2);
-  
-  //left arm points first part
-  ellipse(x-39, y+57, 2, 2);
-  ellipse(x-61, y+57, 2, 2);
-  
-  //left arm points second part
-  ellipse(x-70, y+57, 2, 2);
-  ellipse(x-100, y+57, 2, 2);
-  
-  //right arm third part
-  ellipse(x-110, y+57, 2, 2);
-  ellipse(x-130, y+57, 2, 2);
+class leftLeg {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    rect(0, 0, 15, 70, 20);
+    ellipse(7, 70, 22, 20, 20);
+    pop();
+  }
+}
+
+class rightUpperArm {
+  constructor(x, y, rightHandY) {
+    this.x = x;
+    this.y = y;
+    this.rightHandY = rightHandY;
+  }
+
+  draw() {
+    // Log
+    console.log('right hand Y: ', this.rightHandY)
+
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    rotate(map(this.rightHandY, 0, 100, -PI / 1.5, PI / 1.5));
+    fill(255, 0, 0);
+    rect(0, 0, 75, 15, 20);
+    pop();
+  }
+}
+
+class leftUpperArm {
+  constructor(x, y, leftHandY) {
+    this.x = x;
+    this.y = y;
+    this.leftHandY = leftHandY;
+  }
+
+  draw() {
+    // Log
+    console.log('left hand Y: ', this.leftHandY)
+
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(map(mark[1] / 2, 20, height, -PI / 2, PI / 2));
+    rotate(map(this.leftHandY, 0, 150, -PI / 1.5, PI / 1.5));
+    fill(255, 0, 0);
+    rect(0, 0, 75, 15, 20);
+    pop();
+  }
+}
+
+class Person {
+  constructor(x, y, leftHandY, rightHandY, rightLegY) {
+    this.x = x;
+    this.y = y;
+    this.leftHandY = leftHandY;
+    this.rightHandY = rightHandY;
+    this.rightLegY = rightLegY;
+
+    this.head = new head(35, -45);
+
+    this.rightUpperArm = new rightUpperArm(60, 5, this.rightHandY);
+    this.leftUpperArm = new leftUpperArm(10, 5, this.leftHandY);
+
+    this.rightLeg = new rightLeg(45, 121, this.rightLegY);
+    this.leftLeg = new leftLeg(9, 121);
+  }
+
+  draw() {
+
+    push();
+    translate(this.x, this.y);
+
+    // draw body
+    rect(0, 0, 70, 120, 20);
+
+    // head of the puppet
+    this.head.draw();
+
+    //right hand
+    this.rightUpperArm.draw();
+
+    //left hand
+    this.leftUpperArm.draw();
+
+    // right leg
+    this.rightLeg.draw();
+
+    // left leg
+    this.leftLeg.draw();
+
+    pop();
+  }
 }
