@@ -33,8 +33,134 @@ function modelReady() {
   console.log("Model ready!");
 }
 
+//---------------------------puppet drawing
+class head {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    ellipse(0, 0, 95, 90);
+    pop();
+  }
+}
 
+class rightLeg {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    rect(0, 0, 15, 70, 20);
+    ellipse(8, 70, 22, 20, 20);
+    pop();
+  }
+}
+
+class leftLeg {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+    rect(0, 0, 15, 70, 20);
+    ellipse(7, 70, 22, 20, 20);
+    pop();
+  }
+}
+
+class rightUpperArm {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(this.rotation);
+
+    rect(0, 0, 75, 15, 20);
+    pop();
+  }
+}
+
+class leftUpperArm {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    //this.rotation = frameCount / 100;
+  }
+
+  draw() {
+    //this.rotation = frameCount / 100;
+    // draw the arm
+    push();
+    translate(this.x, this.y);
+    //rotate(map(mark[1] / 2, 20, height, -PI / 2, PI / 2));
+    rect(0, 0, 75, 15, 20);
+    pop();
+  }
+}
+
+class Person {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+
+    this.head = new head(35, -45);
+
+    this.rightUpperArm = new rightUpperArm(70, 5);
+    this.leftUpperArm = new leftUpperArm(-75, 5);
+
+    this.rightLeg = new rightLeg(45, 121);
+    this.leftLeg = new leftLeg(9, 121);
+  }
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+
+    // head of the puppet
+    this.head.draw();
+
+    //right hand
+    this.rightUpperArm.draw();
+
+    //left hand
+    this.leftUpperArm.draw();
+
+    // right leg
+    this.rightLeg.draw();
+
+    this.leftLeg.draw();
+
+    // draw body
+    rect(0, 0, 70, 120, 20);
+    pop();
+  }
+}
+//---------------------------puppet drawing end
 
 
 let person = new Person(120, 100);
@@ -64,102 +190,7 @@ function draw() {
     ellipse(wrist[0], wrist[1], 10);
 
     fill(255,219,172)
-  
-    //body of the puppet
-    rect(x-35, y+46, 70, 120, 20);
-
-    // head of the puppet 
-    ellipse(x, y, 100, 95);
-    
-    //right leg 
-    rect(x+13, y+167, 15, 70, 20);
-    rect(x+10, y+226, 22, 20, 20);
-    
-    //left leg 
-    rect(x-28, y+167, 15, 70, 20);
-    rect(x-32, y+226, 22, 20, 20);
-    
-
-    //leg points top
-    fill(0);
-    ellipse(x+21, y+172, 2, 2);
-    ellipse(x-21, y+172, 2, 2);
-    //legpoints down
-    ellipse(x+21, y+222, 2, 2);
-    ellipse(x-21, y+222, 2, 2);
-    //foot
-    ellipse(x+21, y+232, 2, 2);
-    ellipse(x-21, y+232, 2, 2);
-    
-    //eyes big area
-    push();
-    fill(220);
-    ellipse(x-10, y-8, 15, 13);
-    ellipse(x+10, y-8, 15, 13);
-    pop();
-    
-    //eyes
-    fill(0);
-    ellipse(x-10, y-8, 2, 2);
-    ellipse(x+10, y-8, 2, 2);
-    
-    //lips
-    push();
-    beginShape();
-    noFill();
-    strokeWeight(3);
-    curveVertex(x-15, y+10);
-    curveVertex(x-10, y+10);
-    curveVertex(x-5, y+20);
-    curveVertex(x+5, y+20);
-    curveVertex(x+15, y+10);
-    curveVertex(x+15, y+10);
-    endShape();
-    pop();
-    
-    //body points top
-    ellipse(x-23, y+52, 2, 2);
-    ellipse(x+23, y+52, 2, 2);
-    //body points down
-    ellipse(x-23, y+160, 2, 2);
-    ellipse(x+23, y+160, 2, 2);
-
-
-    push();
-    rotate(map(ringFingerTip[1], 0, 480, -PI / 2, PI / 2));
-    //right arm of the puppet
-    fill(255,219,172);
-    rect(x+35, y+50, 30, 15, 20);
-    rect(x+65, y+50, 40, 15, 20);
-    rect(x+105, y+50, 30, 15, 20);
-    fill(0);
-    //right arm points first part
-    ellipse(x+39, y+57, 2, 2);
-    ellipse(x+61, y+57, 2, 2);
-    //right arm points second part
-    ellipse(x+70, y+57, 2, 2);
-    ellipse(x+100, y+57, 2, 2);
-    //right arm third part
-    ellipse(x+110, y+57, 2, 2);
-    ellipse(x+130, y+57, 2, 2);
-    pop();
-    
-    push();
-    fill(255,219,172);
-    //left arm of the puppet
-    rect(x-65, y+50, 30, 15, 20);
-    rect(x-105, y+50, 40, 15, 20);
-    rect(x-135, y+50, 30, 15, 20);
-    //left arm third part
-    ellipse(x-110, y+57, 2, 2);
-    ellipse(x-130, y+57, 2, 2);
-    fill(0);
-    //left arm points first part
-    ellipse(x-39, y+57, 2, 2);
-    ellipse(x-61, y+57, 2, 2);
-    //left arm points second part
-    ellipse(x-70, y+57, 2, 2);
-    ellipse(x-100, y+57, 2, 2);
-    pop();
+    person.draw();
+ 
   }
 }
