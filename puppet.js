@@ -26,6 +26,7 @@ class rightLeg {
     // draw the arm
     push();
     translate(this.x, this.y);
+    rotate(map(this.rightLegY, 0, 100, HALF_PI, QUARTER_PI ));
     //rotate(map(this.rightLegY, 0, 100, -PI / 2, PI / 0.5));
     rect(0, 0, 15, 70, 20);
     ellipse(8, 70, 22, 20, 20);
@@ -46,7 +47,7 @@ class leftLeg {
     push();
     translate(this.x, this.y);
     //rotate(this.rotation);
-    rotate(map(this.leftLegY, 0, 100, -PI * 0.5 , PI));
+    rotate(map(this.leftLegY, 0, 100, 0, PI * 0.5 ));
     rect(0, 0, 15, 70, 20);
     ellipse(7, 70, 22, 20, 20);
     pop();
@@ -69,7 +70,8 @@ class rightUpperArm {
     push();
     translate(this.x, this.y);
     //rotate(this.rotation);
-    rotate(map(this.rightHandY, 0, 200, -PI / 2, PI ));
+    rotate(map(this.rightHandY, 0, 200, PI / 2, PI ));
+    //rotate(map(this.rightHandY, 0, 200, -PI / 2, PI ));
     fill(255, 0, 0);
     rect(0, 0, 75, 15, 20);
     pop();

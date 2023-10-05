@@ -1,12 +1,16 @@
 // all lines of code inspired by https://learn.ml5js.org/#/reference/handpose
 // rather than drawing all the points on the hand i just drawed points on top of the fingers
-// then i draw some ellipses whichs x and y position is connected to finger movements
+// green ellipses x and y position is connected to finger movements
+// Background Photo by <a href="https://unsplash.com/@djpaine?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">DJ Paine</a> on <a href="https://unsplash.com/photos/4PxJ_9wEQyI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+// for background image upload all code inspired by https://www.youtube.com/watch?v=friYx8xdLOE
 
 let video;
 let handpose;
 let predictions = [];
 let x = 160;
 let y = 100;
+let scene;
+
 
 let ringFingerTip = [];
 let indexFingerTip = [];
@@ -14,6 +18,10 @@ let middleFingerTip = [];
 let pinkyFingerTip = [];
 let thumbFingerTip = [];
 let wrist = [];
+
+function preload(){
+  scene = createImg('scene.jpg')
+}
 
 function setup() {
   createCanvas(800, 350);
@@ -37,6 +45,10 @@ function draw() {
   clear();
   image(video, 0, 0, 400, 350);
 
+  //scene.position(404, 8);
+  //scene.size(403, 350);
+
+
   //catching hand movements inspired by https://learn.ml5js.org/#/reference/handpose
   for (let i = 0; i < predictions.length; i++) {
     // to identify the top points of the finger i checked Hands Keypoints from https://github.com/tensorflow/tfjs-models/tree/master/hand-pose-detection
@@ -59,7 +71,7 @@ function draw() {
     ellipse(wrist[0], wrist[1], 10);
     pop();
   }
-  push();
+
   fill(255, 219, 172);
   //movements of the puppet               leftHandY,                      rightHandY                      righLegY                       leftLegY
 
@@ -77,5 +89,6 @@ function draw() {
     middleDist
   );
   person.draw();
-  pop();
+
+
 }
