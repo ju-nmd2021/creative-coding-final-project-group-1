@@ -5,8 +5,8 @@
 let video;
 let handpose;
 let predictions = [];
-let x= 160;
-let y= 100;
+let x = 160;
+let y = 100;
 
 let ringFingerTip = [];
 let indexFingerTip = [];
@@ -15,9 +15,8 @@ let pinkyFingerTip = [];
 let thumbFingerTip = [];
 let wrist = [];
 
-
 function setup() {
-  createCanvas(400, 350);
+  createCanvas(800, 350);
   video = createCapture({ video: { width: 400, height: 350 } });
   // to hide the second video capture
   video.hide();
@@ -26,22 +25,23 @@ function setup() {
   handpose.on("predict", (results) => {
     predictions = results;
   });
-  
 }
 
 function modelReady() {
   console.log("Model ready!");
 }
 
+let person = new Person(0, 155, 0, 0, 0, 0);
 
 function draw() {
+  clear();
   image(video, 0, 0, 400, 350);
 
   //catching hand movements inspired by https://learn.ml5js.org/#/reference/handpose
   for (let i = 0; i < predictions.length; i++) {
     // to identify the top points of the finger i checked Hands Keypoints from https://github.com/tensorflow/tfjs-models/tree/master/hand-pose-detection
     // image for hand keypoints by https://camo.githubusercontent.com/b0f077393b25552492ef5dd7cd9fd13f386e8bb480fa4ed94ce42ede812066a1/68747470733a2f2f6d65646961706970652e6465762f696d616765732f6d6f62696c652f68616e645f6c616e646d61726b732e706e67
-
+    push();
     ringFingerTip = predictions[i].landmarks[16];
     indexFingerTip = predictions[i].landmarks[8];
     middleFingerTip = predictions[i].landmarks[12];
@@ -57,12 +57,25 @@ function draw() {
     ellipse(pinkyFingerTip[0], pinkyFingerTip[1], 10);
     ellipse(thumbFingerTip[0], thumbFingerTip[1], 10);
     ellipse(wrist[0], wrist[1], 10);
-
-    fill(255,219,172)
-
-    //movements of the puppet                   leftHandY,                       rightHandY                      righLegY                       leftLegY
-    let person = new Person(wrist[0], 155, (wrist[1] - indexFingerTip[1]), (wrist[1] - pinkyFingerTip[1]), (wrist[1]-ringFingerTip[1]), (wrist[1]-middleFingerTip[1]));
-    person.draw();
- 
+    pop();
   }
+  push();
+  fill(255, 219, 172);
+  //movements of the puppet               leftHandY,                      rightHandY                      righLegY                       leftLegY
+
+  let indexDist = dist(wrist[0], wrist[1], indexFingerTip[0], indexFingerTip[1]);
+  let pinkyDist = dist(wrist[0], wrist[1], pinkyFingerTip[0], pinkyFingerTip[1]);
+  let ringDist = dist(wrist[0], wrist[1], ringFingerTip[0], ringFingerTip[1]);
+  let middleDist = dist(wrist[0], wrist[1], middleFingerTip[0], middleFingerTip[1]);
+
+  person.update(
+    wrist[0],
+    155,
+    indexDist,
+    pinkyDist * 1.2,
+    ringDist,
+    middleDist
+  );
+  person.draw();
+  pop();
 }
