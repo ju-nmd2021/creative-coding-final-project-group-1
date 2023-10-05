@@ -23,11 +23,10 @@ class rightLeg {
   }
 
   draw() {
-    // draw the arm
     push();
     translate(this.x, this.y);
-    //rotate(map(this.rightLegY, 0, 100, HALF_PI, PI * 3 /4 ));
-    //rotate(map(this.rightLegY, 0, 100, -PI / 2, PI / 0.5));
+    //rotate(map(this.rightLegY, 0, 100, HALF_PI, 4 * PI / 3));
+    rotate(map(this.rightLegY, 0, 100, PI / 6, PI));
     rect(0, 0, 15, 70, 20);
     ellipse(8, 70, 22, 20, 20);
     pop();
@@ -42,8 +41,6 @@ class leftLeg {
   }
 
   draw() {
-    //this.rotation = frameCount / 100;
-    // draw the arm
     push();
     translate(this.x, this.y);
     //rotate(this.rotation);
@@ -65,13 +62,10 @@ class rightUpperArm {
     // Log
     console.log("right hand Y: ", this.rightHandY);
 
-    //this.rotation = frameCount / 100;
-    // draw the arm
     push();
     translate(this.x, this.y);
     //rotate(this.rotation);
-    rotate(map(this.rightHandY, 0, 200, PI / 2, PI ));
-    //rotate(map(this.rightHandY, 0, 200, -PI / 2, PI ));
+    rotate(map(this.rightHandY, 0, 200, 3 * PI / 2, PI /6));
     fill(255, 0, 0);
     rect(0, 0, 75, 15, 20);
     pop();
@@ -89,11 +83,9 @@ class leftUpperArm {
     // Log
     console.log("left hand Y: ", this.leftHandY);
 
-    //this.rotation = frameCount / 100;
-    // draw the arm
     push();
     translate(this.x, this.y);
-    rotate(map(this.leftHandY, 0, 200, PI * 1.5, PI * 0.5));
+    //rotate(map(this.leftHandY, 0, 200, -PI / 2, 11 * PI /6 ));
     fill(255, 0, 0);
     rect(0, 0, 75, 15, 20);
     pop();
@@ -111,8 +103,8 @@ class Person {
 
     this.head = new head(35+400, -45);
 
-    this.rightUpperArm = new rightUpperArm(77+400, 5, this.rightHandY);
-    this.leftUpperArm = new leftUpperArm(5+400, 10, this.leftHandY);
+    this.rightUpperArm = new rightUpperArm(70+400, 5, this.rightHandY);
+    this.leftUpperArm = new leftUpperArm(-74+400, 5, this.leftHandY);
 
     this.rightLeg = new rightLeg(45+400, 121, this.rightLegY);
     this.leftLeg = new leftLeg(9+400, 121, this.leftLegY);
