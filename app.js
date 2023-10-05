@@ -16,7 +16,6 @@ let thumbFingerTip = [];
 let wrist = [];
 
 
-
 function setup() {
   createCanvas(400, 350);
   video = createCapture({ video: { width: 400, height: 350 } });
@@ -36,7 +35,7 @@ function modelReady() {
 
 
 function draw() {
-  image(video, 0, 0, width, height);
+  image(video, 0, 0, 400, 350);
 
   //catching hand movements inspired by https://learn.ml5js.org/#/reference/handpose
   for (let i = 0; i < predictions.length; i++) {
@@ -61,8 +60,8 @@ function draw() {
 
     fill(255,219,172)
 
-    //                                     leftHandY,                       rightHandY                      righLegY
-    let person = new Person(wrist[0], 155, (wrist[1] - indexFingerTip[1]), (wrist[1] - pinkyFingerTip[1]), (wrist[1]-middleFingerTip[1]));
+    //movements of the puppet                   leftHandY,                       rightHandY                      righLegY                       leftLegY
+    let person = new Person(wrist[0], 155, (wrist[1] - indexFingerTip[1]), (wrist[1] - pinkyFingerTip[1]), (wrist[1]-ringFingerTip[1]), (wrist[1]-middleFingerTip[1]));
     person.draw();
  
   }

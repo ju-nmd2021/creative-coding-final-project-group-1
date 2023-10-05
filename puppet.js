@@ -26,7 +26,7 @@ class rightLeg {
     // draw the arm
     push();
     translate(this.x, this.y);
-    rotate(map(this.rightLegY, 0, 100, -PI / 9, PI / 2.5));
+    //rotate(map(this.rightLegY, 0, 100, -PI / 2, PI / 2));
     rect(0, 0, 15, 70, 20);
     ellipse(8, 70, 22, 20, 20);
     pop();
@@ -34,9 +34,10 @@ class rightLeg {
 }
 
 class leftLeg {
-  constructor(x, y) {
+  constructor(x, y, leftLegY) {
     this.x = x;
     this.y = y;
+    this.leftLegY = leftLegY;
   }
 
   draw() {
@@ -45,6 +46,7 @@ class leftLeg {
     push();
     translate(this.x, this.y);
     //rotate(this.rotation);
+    //rotate(map(this.leftLegY, 0, 100, -PI / 9, PI / 2.5));
     rect(0, 0, 15, 70, 20);
     ellipse(7, 70, 22, 20, 20);
     pop();
@@ -60,14 +62,14 @@ class rightUpperArm {
 
   draw() {
     // Log
-    console.log('right hand Y: ', this.rightHandY)
+    console.log("right hand Y: ", this.rightHandY);
 
     //this.rotation = frameCount / 100;
     // draw the arm
     push();
     translate(this.x, this.y);
     //rotate(this.rotation);
-    rotate(map(this.rightHandY, 0, 100, -PI / 1.5, PI / 1.5));
+    rotate(map(this.rightHandY, 0, 200, -PI / 2, PI ));
     fill(255, 0, 0);
     rect(0, 0, 75, 15, 20);
     pop();
@@ -83,14 +85,13 @@ class leftUpperArm {
 
   draw() {
     // Log
-    console.log('left hand Y: ', this.leftHandY)
+    console.log("left hand Y: ", this.leftHandY);
 
     //this.rotation = frameCount / 100;
     // draw the arm
     push();
     translate(this.x, this.y);
-    //rotate(map(mark[1] / 2, 20, height, -PI / 2, PI / 2));
-    rotate(map(this.leftHandY, 0, 150, -PI / 1.5, PI / 1.5));
+    rotate(map(this.leftHandY, 0, 200, PI * 1.5, PI * 0.5));
     fill(255, 0, 0);
     rect(0, 0, 75, 15, 20);
     pop();
@@ -98,24 +99,24 @@ class leftUpperArm {
 }
 
 class Person {
-  constructor(x, y, leftHandY, rightHandY, rightLegY) {
+  constructor(x, y, leftHandY, rightHandY, rightLegY, leftLegY) {
     this.x = x;
     this.y = y;
     this.leftHandY = leftHandY;
     this.rightHandY = rightHandY;
     this.rightLegY = rightLegY;
+    this.leftLegY = leftLegY;
 
     this.head = new head(35, -45);
 
-    this.rightUpperArm = new rightUpperArm(60, 5, this.rightHandY);
-    this.leftUpperArm = new leftUpperArm(10, 5, this.leftHandY);
+    this.rightUpperArm = new rightUpperArm(77, 5, this.rightHandY);
+    this.leftUpperArm = new leftUpperArm(5, 10, this.leftHandY);
 
     this.rightLeg = new rightLeg(45, 121, this.rightLegY);
-    this.leftLeg = new leftLeg(9, 121);
+    this.leftLeg = new leftLeg(9, 121, this.leftLegY);
   }
 
   draw() {
-
     push();
     translate(this.x, this.y);
 
