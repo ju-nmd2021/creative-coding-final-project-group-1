@@ -42,8 +42,10 @@ function modelReady() {
 let person = new Person(0, 155, 0, 0, 0, 0);
 
 function draw() {
+  
   clear();
   image(video, 0, 0, 400, 350);
+
 
   //scene.position(404, 8);
   //scene.size(403, 350);
