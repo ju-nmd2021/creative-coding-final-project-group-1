@@ -107,10 +107,10 @@ class Person {
     this.head = new head(35+400, -45);
 
     this.rightUpperArm = new rightUpperArm(70+400, 5, this.rightHandY);
-    this.leftUpperArm = new leftUpperArm(397, 5, this.leftHandY);
+    this.leftUpperArm = new leftUpperArm(397, 19, this.leftHandY);
 
-    this.rightLeg = new rightLeg(45+400, 121, this.rightLegY);
-    this.leftLeg = new leftLeg(9+400, 121, this.leftLegY);
+    this.rightLeg = new rightLeg(45+400, 124, this.rightLegY);
+    this.leftLeg = new leftLeg(9+400, 119, this.leftLegY);
   }
 
   update(x, y, leftHandY, rightHandY, rightLegY, leftLegY){
