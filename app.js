@@ -26,7 +26,8 @@ function preload(){
 function setup() {
   createCanvas(800, 350);
   video = createCapture({ video: { width: 400, height: 350 } });
-  // to hide the second video capture
+  // to hide the second video capture 	
+  // The following lines of code about video.hide(); was added by courtesy of Garrit Schaap
   video.hide();
 
   handpose = ml5.handpose(video, modelReady);
@@ -74,8 +75,8 @@ function draw() {
   }
 
   fill(255, 219, 172);
-  //movements of the puppet               leftHandY,                      rightHandY                      righLegY                       leftLegY
-
+	
+// The following lines of code about distance was added by courtesy of Garrit Schaap
   let indexDist = dist(wrist[0], wrist[1], indexFingerTip[0], indexFingerTip[1]);
   let pinkyDist = dist(wrist[0], wrist[1], pinkyFingerTip[0], pinkyFingerTip[1]);
   let ringDist = dist(wrist[0], wrist[1], ringFingerTip[0], ringFingerTip[1]);
