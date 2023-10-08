@@ -76,7 +76,7 @@ function draw() {
 
   fill(255, 219, 172);
 	
-// The following lines of code about distance was added by courtesy of Garrit Schaap
+// The following lines of code about distance and person.update was added by courtesy of Garrit Schaap 
   let indexDist = dist(wrist[0], wrist[1], indexFingerTip[0], indexFingerTip[1]);
   let pinkyDist = dist(wrist[0], wrist[1], pinkyFingerTip[0], pinkyFingerTip[1]);
   let ringDist = dist(wrist[0], wrist[1], ringFingerTip[0], ringFingerTip[1]);
