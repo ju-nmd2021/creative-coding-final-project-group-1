@@ -13,6 +13,23 @@ class head {
     translate(this.x, this.y);
     //rotate(this.rotation);
     ellipse(0, 0, 95, 90);
+    fill(0);
+    ellipse(x-170, y-105, 2, 2);
+    ellipse(x-150, y-105, 2, 2);
+
+    //lips
+    push();
+    beginShape();
+    noFill();
+    strokeWeight(3);
+    curveVertex(-15, 10);
+    curveVertex(-10, 10);
+    curveVertex(-5, 20);
+    curveVertex(+5, 20);
+    curveVertex(+15, 10);
+    curveVertex(+15, 10);
+    endShape();
+    pop();
     pop();
   }
 }
@@ -32,6 +49,11 @@ class rightLeg {
     //rotate(PI / 3);
     rect(0, 0, 15, 70, 20);
     ellipse(8, 70, 22, 20, 20);
+    //points
+    ellipse(8, 70, 22, 20, 20);
+    ellipse(8, 7, 2, 2);
+    ellipse(8, 57, 2, 2);
+    ellipse(8, 67, 2, 2);
     pop();
   }
 }
@@ -51,6 +73,11 @@ class leftLeg {
     rotate(map(this.leftLegY, 50, 170,-PI / 4, PI / 4));
     rect(0, 0, 15, 70, 20);
     ellipse(7, 70, 22, 20, 20);
+    //points
+    ellipse(7, 70, 22, 20, 20);
+    ellipse(7, 7, 2, 2);
+    ellipse(7, 57, 2, 2);
+    ellipse(7, 67, 2, 2);
     pop();
   }
 }
@@ -71,6 +98,9 @@ class rightUpperArm {
     //rotate(this.rotation);
     rotate(map(this.rightHandY, 50, 170, PI / 4, -PI / 4));
     rect(0, 0, 75, 15, 20);
+    //right arm points 
+    ellipse(10, 7, 2, 2);
+    ellipse(66, 7, 2, 2);
     pop();
   }
 }
@@ -91,6 +121,9 @@ class leftUpperArm {
     rotate(PI);
     rotate(map(this.leftHandY, 50, 170, -PI / 4, PI / 4));
     rect(0, 0, 75, 15, 20);
+    //left arm points
+    ellipse(10, 7, 2, 2);
+    ellipse(66, 7, 2, 2);
     pop();
   }
 }
@@ -134,6 +167,11 @@ class Person {
 
     // draw body
     rect(0 + 400, 0, 70, 120, 20);
+    //body points
+    ellipse(13+400, 10, 2, 2);
+    ellipse(57+400, 10, 2, 2);
+    ellipse(13+400, 110, 2, 2);
+    ellipse(57+400, 110, 2, 2);
 
     // head of the puppet
     this.head.draw();
