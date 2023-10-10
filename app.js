@@ -3,6 +3,13 @@
 // green ellipses x and y position is connected to finger movements
 // Background Photo by <a href="https://unsplash.com/@djpaine?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">DJ Paine</a> on <a href="https://unsplash.com/photos/4PxJ_9wEQyI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 // for background image upload all code inspired by https://www.youtube.com/watch?v=friYx8xdLOE
+// color detection all code inspired by https://www.youtube.com/watch?app=desktop&v=Joy4NQPIOxk&t=100s
+
+
+//to find the color
+let tolerance = 5;
+let colorToMatch;
+
 
 let video;
 let handpose;
@@ -19,9 +26,9 @@ let pinkyFingerTip = [];
 let thumbFingerTip = [];
 let wrist = [];
 
-function preload(){
-  scene = createImg('scene.jpg')
-}
+//function preload(){
+//  scene = createImg('scene.jpg')
+//}
 
 function setup() {
   createCanvas(800, 350);
@@ -34,6 +41,8 @@ function setup() {
   handpose.on("predict", (results) => {
     predictions = results;
   });
+
+  colorToMatch = (255, 150, 0);
 }
 
 function modelReady() {
@@ -45,7 +54,7 @@ let person = new Person(0, 155, 0, 0, 0, 0);
 function draw() {
   clear();
   image(video, 0, 0, 400, 350);
-  image(scene, 400, 0, 400, 350);
+  //image(scene, 400, 0, 400, 350);
 
   //scene.position(404, 8);
   //scene.size(403, 350);
@@ -90,7 +99,53 @@ function draw() {
     ringDist,
     middleDist
   );
-
+  
   person.draw();
 
+  let firstPx = findColor(video, colorToMatch, tolerance);
+  if(firstPx !== undefined){
+    fill(colorToMatch);
+    stroke(255);
+    strokeWeight(2);
+    circle(firstPx.x, firstPx.y, 20);
+    console.log(colorToMatch)
+  }
+
+}
+
+function mousePressed(){
+  loadPixels();
+  colorToMatch = get(mouseX, mouseY);
+}
+
+function findColor(input, c, tolerance){
+
+  if( input.width === 0 || input.height === 0){
+    return undefined;
+  }
+
+  let matchR = c[0];
+  let matchG = c[1];
+  let matchB = c[2];
+
+  input.loadPixels();
+
+  // Selecting the pixel
+  for (let y=0; y<video.height; y++ ){
+    for (let x=0; x<video.width; x++){
+
+      let index = (y * video.width + x) * 4;
+      let r = video.pixels[index];
+      let g = video.pixels[index+1];
+      let b= video.pixels[index+2];
+
+      if( r >= matchR-tolerance && r <= matchR+tolerance &&
+          g >= matchG-tolerance && r <= matchG+tolerance &&
+          b >= matchB-tolerance && r <= matchB+tolerance  ){
+
+            return createVector(x, y);
+
+          }
+    }
+  }
 }

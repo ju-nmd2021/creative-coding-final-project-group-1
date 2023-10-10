@@ -1,3 +1,5 @@
+// The following lines of about the person class was added by courtesy of Garrit Schaap 
+
 class head {
   constructor(x, y) {
     this.x = x;
@@ -61,8 +63,8 @@ class rightUpperArm {
   }
 
   draw() {
-    // Log
-    console.log("right hand Y: ", this.rightHandY);
+
+    //console.log("right hand Y: ", this.rightHandY);
 
     push();
     translate(this.x, this.y);
@@ -82,8 +84,8 @@ class leftUpperArm {
   }
 
   draw() {
-    // Log
-    console.log("left hand Y: ", this.leftHandY);
+
+    //console.log("left hand Y: ", this.leftHandY);
 
     push();
     translate(this.x, this.y);
@@ -131,7 +133,6 @@ class Person {
   draw() {
     push();
     translate(this.x, this.y);
-
 
     // draw body
     rect(0 + 400, 0, 70, 120, 20);
