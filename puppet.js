@@ -70,7 +70,6 @@ class rightUpperArm {
     translate(this.x, this.y);
     //rotate(this.rotation);
     rotate(map(this.rightHandY, 50, 170, PI / 4, -PI / 4));
-    fill(255, 0, 0);
     rect(0, 0, 75, 15, 20);
     pop();
   }
@@ -91,7 +90,6 @@ class leftUpperArm {
     translate(this.x, this.y);
     rotate(PI);
     rotate(map(this.leftHandY, 50, 170, -PI / 4, PI / 4));
-    fill(255, 0, 0);
     rect(0, 0, 75, 15, 20);
     pop();
   }

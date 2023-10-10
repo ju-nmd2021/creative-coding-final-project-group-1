@@ -26,9 +26,9 @@ let pinkyFingerTip = [];
 let thumbFingerTip = [];
 let wrist = [];
 
-//function preload(){
-//  scene = createImg('scene.jpg')
-//}
+function preload(){
+  scene = createImg('scene.jpg')
+}
 
 function setup() {
   createCanvas(800, 350);
@@ -53,8 +53,9 @@ let person = new Person(0, 155, 0, 0, 0, 0);
 
 function draw() {
   clear();
+  image(scene, 400, 0, 400, 350);
   image(video, 0, 0, 400, 350);
-  //image(scene, 400, 0, 400, 350);
+
 
   //scene.position(404, 8);
   //scene.size(403, 350);
