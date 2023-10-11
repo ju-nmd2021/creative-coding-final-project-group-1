@@ -3,13 +3,8 @@
 // green ellipses x and y position is connected to finger movements
 // Background Photo by <a href="https://unsplash.com/@djpaine?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">DJ Paine</a> on <a href="https://unsplash.com/photos/4PxJ_9wEQyI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 // for background image upload all code inspired by https://www.youtube.com/watch?v=friYx8xdLOE
-// color detection all code inspired by https://www.youtube.com/watch?app=desktop&v=Joy4NQPIOxk&t=100s
-
-
-//to find the color
-let tolerance = 5;
-let colorToMatch;
-
+// all color detection and fill for the puppets body inspired by https://www.youtube.com/watch?v=Joy4NQPIOxk&t=527s
+// mousePressed function inspired by https://www.youtube.com/watch?v=Joy4NQPIOxk&t=527s
 
 let video;
 let handpose;
@@ -26,9 +21,10 @@ let pinkyFingerTip = [];
 let thumbFingerTip = [];
 let wrist = [];
 
-//function preload(){
-  //scene = createImg('scene.jpg')
-//}
+
+// function preload(){
+//   scene = createImg('scene.jpg')
+// }
 
 function setup() {
   createCanvas(800, 350);
@@ -42,24 +38,62 @@ function setup() {
     predictions = results;
   });
 
-  colorToMatch = (255, 150, 0);
 }
+
 
 function modelReady() {
   console.log("Model ready!");
 }
 
+// mouse pressed inspire by https://www.youtube.com/watch?v=Joy4NQPIOxk&t=527s
+// 
+function mousePressed(){
+
+  // rect width: 40 height:50
+  //let randomPixelX = int(random(180, 220));
+  //let randomPixelY = int(random(150, 200));
+
+  let randomPixelX = int(random(125, 275));
+  let randomPixelY = int(random(100, 250));
+
+  let index = (randomPixelX + randomPixelY * (width/2)) * 4; //
+
+   // how to get pixel color inspired by
+   let r = video.pixels[index]; 
+   let g = video.pixels[index + 1]; 
+   let b = video.pixels[index + 2];
+
+   fill(r, g, b);
+
+   console.log(r, g, b, randomPixelX, randomPixelY);
+
+}
+
+// function  mousePressed(){
+
+//   let index = (mouseX + mouseY * (width/2)) * 4; //
+//   // how to get pixel color inspired by
+//   let r = video.pixels[index]; 
+//   let g = video.pixels[index + 1]; 
+//   let b = video.pixels[index + 2];
+
+//   console.log(r, g, b);
+
+//   fill(r, g, b);
+// }
+
 let person = new Person(0, 155, 0, 0, 0, 0);
 
 function draw() {
   clear();
+
+  video.loadPixels();
+
   //image(scene, 400, 0, 400, 350);
   image(video, 0, 0, 400, 350);
 
-
   //scene.position(404, 8);
   //scene.size(403, 350);
-
 
   //catching hand movements inspired by https://learn.ml5js.org/#/reference/handpose
   for (let i = 0; i < predictions.length; i++) {
@@ -84,9 +118,8 @@ function draw() {
     pop();
   }
 
-  fill(255, 219, 172);
-	
-// The following lines of code about distance and person.update was added by courtesy of Garrit Schaap 
+
+  // The following lines of code about distance and person.update was added by courtesy of Garrit Schaap 
   let indexDist = dist(wrist[0], wrist[1], indexFingerTip[0], indexFingerTip[1]);
   let pinkyDist = dist(wrist[0], wrist[1], pinkyFingerTip[0], pinkyFingerTip[1]);
   let ringDist = dist(wrist[0], wrist[1], ringFingerTip[0], ringFingerTip[1]);
@@ -100,53 +133,15 @@ function draw() {
     ringDist,
     middleDist
   );
-  
+
+  push();
+  fill(0, 0, 0, 0);
+  rect(125, 100, 150, 150);
+  strokeWeight(2);
+  pop();
+
   person.draw();
 
-  let firstPx = findColor(video, colorToMatch, tolerance);
-  if(firstPx !== undefined){
-    fill(colorToMatch);
-    stroke(255);
-    strokeWeight(2);
-    circle(firstPx.x, firstPx.y, 20);
-    console.log(colorToMatch)
-  }
-
 }
 
-function mousePressed(){
-  loadPixels();
-  colorToMatch = get(mouseX, mouseY);
-}
 
-function findColor(input, c, tolerance){
-
-  if( input.width === 0 || input.height === 0){
-    return undefined;
-  }
-
-  let matchR = c[0];
-  let matchG = c[1];
-  let matchB = c[2];
-
-  input.loadPixels();
-
-  // Selecting the pixel
-  for (let y=0; y<video.height; y++ ){
-    for (let x=0; x<video.width; x++){
-
-      let index = (y * video.width + x) * 4;
-      let r = video.pixels[index];
-      let g = video.pixels[index+1];
-      let b= video.pixels[index+2];
-
-      if( r >= matchR-tolerance && r <= matchR+tolerance &&
-          g >= matchG-tolerance && r <= matchG+tolerance &&
-          b >= matchB-tolerance && r <= matchB+tolerance  ){
-
-            return createVector(x, y);
-
-          }
-    }
-  }
-}
