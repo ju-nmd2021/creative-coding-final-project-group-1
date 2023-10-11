@@ -43,6 +43,7 @@ function setup() {
 
 function modelReady() {
   console.log("Model ready!");
+  fill(255, 223, 196);
 }
 
 // mouse pressed inspire by https://www.youtube.com/watch?v=Joy4NQPIOxk&t=527s
