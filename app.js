@@ -20,6 +20,7 @@ let pinkyFingerTip = [];
 let thumbFingerTip = [];
 let wrist = [];
 
+// The following one line of code about loadImage(); was added by courtesy of Garrit Schaap
 function preload() {
   scene = loadImage("scene.jpg");
 }
@@ -28,13 +29,16 @@ function setup() {
   createCanvas(800, 350);
   video = createCapture({ video: { width: 400, height: 350 } });
   // to hide the second video capture
-  // The following lines of code about video.hide(); was added by courtesy of Garrit Schaap
+  // The following line of code about video.hide(); was added by courtesy of Garrit Schaap
   video.hide();
 
   handpose = ml5.handpose(video, modelReady);
   handpose.on("predict", (results) => {
     predictions = results;
   });
+
+  // pixel density inspired by https://www.youtube.com/watch?v=nMUMZ5YRxHI&t=1s
+  pixelDensity(1);
 }
 
 function modelReady() {
@@ -42,10 +46,13 @@ function modelReady() {
   fill(255, 223, 196);
 }
 
-// mouse pressed inspire by https://www.youtube.com/watch?v=Joy4NQPIOxk&t=527s
-//
+// mouse pressed inspired by https://www.youtube.com/watch?v=Joy4NQPIOxk&t=527s
+// getting al the pixels from a screen inspired by https://www.youtube.com/watch?v=nMUMZ5YRxHI&t=1s
+// rather than selecting a pixel using array i selected a random pixel from a spesific area
+// getting pixel from the video rather than an image inspired by https://www.youtube.com/watch?v=rNqaw8LT2ZU&t=206s
+
 function mousePressed() {
-  // rect width: 40 height:50
+  //rect width: 40 height:50
   //let randomPixelX = int(random(180, 220));
   //let randomPixelY = int(random(150, 200));
 
@@ -54,29 +61,16 @@ function mousePressed() {
 
   let index = (randomPixelX + randomPixelY * (width / 2)) * 4; //
 
-  // how to get pixel color inspired by
   let r = video.pixels[index];
   let g = video.pixels[index + 1];
   let b = video.pixels[index + 2];
 
   fill(r, g, b);
 
-  console.log(r, g, b, randomPixelX, randomPixelY);
+  console.log(randomPixelX, randomPixelY);
 }
 
-// function  mousePressed(){
-
-//   let index = (mouseX + mouseY * (width/2)) * 4; //
-//   // how to get pixel color inspired by
-//   let r = video.pixels[index];
-//   let g = video.pixels[index + 1];
-//   let b = video.pixels[index + 2];
-
-//   console.log(r, g, b);
-
-//   fill(r, g, b);
-// }
-
+// The following line of code for creating a new person was added by courtesy of Garrit Schaap
 let person = new Person(0, 155, 0, 0, 0, 0);
 
 function draw() {
@@ -92,6 +86,7 @@ function draw() {
 
   //catching hand movements inspired by https://learn.ml5js.org/#/reference/handpose
   for (let i = 0; i < predictions.length; i++) {
+
     // to identify the top points of the finger i checked Hands Keypoints from https://github.com/tensorflow/tfjs-models/tree/master/hand-pose-detection
     // image for hand keypoints by https://camo.githubusercontent.com/b0f077393b25552492ef5dd7cd9fd13f386e8bb480fa4ed94ce42ede812066a1/68747470733a2f2f6d65646961706970652e6465762f696d616765732f6d6f62696c652f68616e645f6c616e646d61726b732e706e67
     push();
@@ -142,7 +137,8 @@ function draw() {
     ringDist,
     middleDist
   );
-
+  
+  // color detection area
   push();
   fill(0, 0, 0, 0);
   rect(125, 100, 150, 150);
