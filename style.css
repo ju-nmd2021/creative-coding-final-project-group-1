@@ -6,3 +6,10 @@ body {
 canvas {
   display: block;
 }
+
+/* main{
+  grid-column-start: 2;
+  grid-column-end: five;
+  grid-row-start: row1-start;
+  grid-row-end: 3;
+} */
