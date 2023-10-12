@@ -13,7 +13,6 @@ let x = 160;
 let y = 100;
 let scene;
 
-
 let ringFingerTip = [];
 let indexFingerTip = [];
 let middleFingerTip = [];
@@ -21,15 +20,14 @@ let pinkyFingerTip = [];
 let thumbFingerTip = [];
 let wrist = [];
 
-
-// function preload(){
-//   scene = createImg('scene.jpg')
-// }
+function preload() {
+  scene = loadImage("scene.jpg");
+}
 
 function setup() {
   createCanvas(800, 350);
   video = createCapture({ video: { width: 400, height: 350 } });
-  // to hide the second video capture 	
+  // to hide the second video capture
   // The following lines of code about video.hide(); was added by courtesy of Garrit Schaap
   video.hide();
 
@@ -37,9 +35,7 @@ function setup() {
   handpose.on("predict", (results) => {
     predictions = results;
   });
-
 }
-
 
 function modelReady() {
   console.log("Model ready!");
@@ -47,9 +43,8 @@ function modelReady() {
 }
 
 // mouse pressed inspire by https://www.youtube.com/watch?v=Joy4NQPIOxk&t=527s
-// 
-function mousePressed(){
-
+//
+function mousePressed() {
   // rect width: 40 height:50
   //let randomPixelX = int(random(180, 220));
   //let randomPixelY = int(random(150, 200));
@@ -57,25 +52,24 @@ function mousePressed(){
   let randomPixelX = int(random(125, 275));
   let randomPixelY = int(random(100, 250));
 
-  let index = (randomPixelX + randomPixelY * (width/2)) * 4; //
+  let index = (randomPixelX + randomPixelY * (width / 2)) * 4; //
 
-   // how to get pixel color inspired by
-   let r = video.pixels[index]; 
-   let g = video.pixels[index + 1]; 
-   let b = video.pixels[index + 2];
+  // how to get pixel color inspired by
+  let r = video.pixels[index];
+  let g = video.pixels[index + 1];
+  let b = video.pixels[index + 2];
 
-   fill(r, g, b);
+  fill(r, g, b);
 
-   console.log(r, g, b, randomPixelX, randomPixelY);
-
+  console.log(r, g, b, randomPixelX, randomPixelY);
 }
 
 // function  mousePressed(){
 
 //   let index = (mouseX + mouseY * (width/2)) * 4; //
 //   // how to get pixel color inspired by
-//   let r = video.pixels[index]; 
-//   let g = video.pixels[index + 1]; 
+//   let r = video.pixels[index];
+//   let g = video.pixels[index + 1];
 //   let b = video.pixels[index + 2];
 
 //   console.log(r, g, b);
@@ -90,7 +84,7 @@ function draw() {
 
   video.loadPixels();
 
-  //image(scene, 400, 0, 400, 350);
+  image(scene, 400, 0, 400, 350);
   image(video, 0, 0, 400, 350);
 
   //scene.position(404, 8);
@@ -119,12 +113,26 @@ function draw() {
     pop();
   }
 
-
-  // The following lines of code about distance and person.update was added by courtesy of Garrit Schaap 
-  let indexDist = dist(wrist[0], wrist[1], indexFingerTip[0], indexFingerTip[1]);
-  let pinkyDist = dist(wrist[0], wrist[1], pinkyFingerTip[0], pinkyFingerTip[1]);
+  // The following lines of code about distance and person.update was added by courtesy of Garrit Schaap
+  let indexDist = dist(
+    wrist[0],
+    wrist[1],
+    indexFingerTip[0],
+    indexFingerTip[1]
+  );
+  let pinkyDist = dist(
+    wrist[0],
+    wrist[1],
+    pinkyFingerTip[0],
+    pinkyFingerTip[1]
+  );
   let ringDist = dist(wrist[0], wrist[1], ringFingerTip[0], ringFingerTip[1]);
-  let middleDist = dist(wrist[0], wrist[1], middleFingerTip[0], middleFingerTip[1]);
+  let middleDist = dist(
+    wrist[0],
+    wrist[1],
+    middleFingerTip[0],
+    middleFingerTip[1]
+  );
 
   person.update(
     wrist[0],
@@ -142,7 +150,4 @@ function draw() {
   pop();
 
   person.draw();
-
 }
-
-
