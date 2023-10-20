@@ -138,7 +138,7 @@ function draw() {
     middleDist
   );
   
-  // color detection area
+
   push();
   fill(0, 0, 0, 0);
   rect(125, 100, 150, 150);
