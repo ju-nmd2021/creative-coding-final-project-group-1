@@ -131,10 +131,10 @@ function draw() {
     middleFingerTip[1]
   );
 
-  // while its working the status will be true
+  // while working===true it will work as it is otherwise it will stop dancing
   if (working){
     textSize(30);
-    text('Make the puppet dance', wrist[0]-50, 155);
+    text('Make the puppet dance', width/2, 25);
     person.update(
       wrist[0],
       155,
@@ -143,11 +143,11 @@ function draw() {
       ringDist,
       middleDist
     );
-    // inspired by https://p5js.org/reference/#/p5/text
 
   } else{
+    // text inspired by https://p5js.org/reference/#/p5/text
     textSize(30);
-    text('Im tired! Stop dancing', wrist[0]-50, 155);
+    text('Im tired! I dont want to dance', width/2, 25);
     person.update(
       wrist[0],
       155,
@@ -171,10 +171,13 @@ function draw() {
 
 function stopTime(){
   // it stops betwen 10 to 30 seconds randomly and it decides whether it will dance or not
+  // in this way the puppet will decide when to dance as we discussed
   let duration = Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000;
 
   //how many ms it will work or not
+  console.log(working);
   console.log("duration = ", duration);
+  // setTimeout and duration inspired by https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
   setTimeout(()=>{
     // if its working it turns into false, if its false its turning into true
     if(working){
