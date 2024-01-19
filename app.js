@@ -12,6 +12,8 @@ let predictions = [];
 let x = 160;
 let y = 100;
 let scene;
+let working = true;
+
 
 let ringFingerTip = [];
 let indexFingerTip = [];
@@ -129,15 +131,32 @@ function draw() {
     middleFingerTip[1]
   );
 
-  person.update(
-    wrist[0],
-    155,
-    indexDist,
-    pinkyDist * 1.2,
-    ringDist,
-    middleDist
-  );
-  
+  // while its working the status will be true
+  if (working){
+    textSize(30);
+    text('Make the puppet dance', wrist[0]-50, 155);
+    person.update(
+      wrist[0],
+      155,
+      indexDist,
+      pinkyDist * 1.2,
+      ringDist,
+      middleDist
+    );
+    // inspired by https://p5js.org/reference/#/p5/text
+
+  } else{
+    textSize(30);
+    text('Im tired! Stop dancing', wrist[0]-50, 155);
+    person.update(
+      wrist[0],
+      155,
+      110,
+      110,
+      110,
+      110
+    );
+  }
 
   push();
   fill(0, 0, 0, 0);
@@ -147,3 +166,25 @@ function draw() {
 
   person.draw();
 }
+
+// based on the duration it will give a break
+
+function stopTime(){
+  // it stops betwen 10 to 30 seconds randomly and it decides whether it will dance or not
+  let duration = Math.floor(Math.random() * (30000 - 10000 + 1)) + 10000;
+
+  //how many ms it will work or not
+  console.log("duration = ", duration);
+  setTimeout(()=>{
+    // if its working it turns into false, if its false its turning into true
+    if(working){
+      working = false;
+    }else{
+      working = true;
+    }
+    stopTime();
+  },duration)
+
+}
+
+stopTime();
